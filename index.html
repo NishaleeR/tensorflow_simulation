@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gesture Draw</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="camera-panel" aria-label="Camera panel">
+      <div class="panel-header">
+        <span class="dot"></span>
+        <span>Camera</span>
+      </div>
+
+      <div id="camera-wrap">
+        <video id="webcam" autoplay playsinline muted></video>
+        <canvas id="skeleton-canvas"></canvas>
+      </div>
+
+      <div class="color-picker-card">
+        <div class="toolbar-title">Color Wheel</div>
+        <div class="color-wheel-wrap">
+          <canvas id="color-wheel" width="220" height="220"></canvas>
+          <div id="color-selector" class="color-selector" aria-hidden="true"></div>
+        </div>
+
+        <div class="selected-color-row">
+          <span class="selected-label">Active</span>
+          <span id="active-color-preview" class="active-color-preview" aria-label="Active color"></span>
+        </div>
+
+        <div id="active-color-palette" class="color-palette" aria-label="Active colors"></div>
+
+        <div class="swatch-group">
+          <div class="toolbar-title secondary">Primary Colors</div>
+          <div id="primary-color-palette" class="base-color-palette" aria-label="Primary colors"></div>
+        </div>
+      </div>
+
+      <p id="status">Show your hand to the camera to begin</p>
+    </aside>
+
+    <section class="draw-board-panel" aria-label="Drawing board area">
+      <div class="draw-board-wrap">
+        <canvas id="draw-canvas"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <p class="legend">☝️ Draw &nbsp;&nbsp; ✌️ Erase &nbsp;&nbsp; ✊ Clear &nbsp;&nbsp; ✋ Stop</p>
+
+  <!--
+    MediaPipe Hands — plain classic <script> tags (NOT type="module").
+    This matters: browsers block ES module imports when a page is opened
+    via file:// (double-clicked / dragged into the browser), which is why
+    the previous version needed Live Server. Classic scripts don't have
+    that restriction, so this version runs directly off disk.
+  -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+
+  <script src="script.js"></script>
+</body>
+</html>
